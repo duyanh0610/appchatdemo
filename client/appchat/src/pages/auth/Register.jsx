@@ -2,7 +2,8 @@ import { Alert, Button, Form, Row, Col, Stack } from "react-bootstrap"
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const Register = () => {
-   const {user} =  useContext(AuthContext)
+   const {registerInfo,updateRegisterInfo} =  useContext(AuthContext)
+   
     return (
         <>
             <Form >
@@ -13,11 +14,11 @@ const Register = () => {
                             <h2>{user.name}</h2>
                             <div>
                                 <label htmlFor="username">Username </label>
-                                <Form.Control type = "text" placeholder = "username" id ="username"/>
+                                <Form.Control type = "text" placeholder = "username" id ="username" onChange ={(event)=>updateRegisterInfo({...registerInfo,name:event.targer.value})}/>
                             </div>
                             <div>
                                 <label htmlFor="email">Email </label>
-                                <Form.Control type = "text" placeholder = "email" id ="email"/>
+                                <Form.Control type = "text" placeholder = "email" id ="email"  />
                             </div>
                             <div>
                                 <label htmlFor="name">Name </label>
