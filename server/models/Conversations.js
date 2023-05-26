@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const ConversationSchema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     name: String,
     participants: [String],
-  });
+    
+  }, {timestamps:true});
   const Conversation = mongoose.model(
     "conversation",
     ConversationSchema,

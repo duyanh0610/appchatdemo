@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Nav, Navbar, Stack } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Menu = () => {
     const id = 1;
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const  {user,logoutUser} = useContext(AuthContext)
+    const username = 'test'
     return (
         <>
             <Navbar bg="dark" className="mb-4" >
@@ -29,10 +32,15 @@ const Menu = () => {
                     </Link>
 
                     <Nav>
-                        {isLoggedIn ? (
-                            <h4 className='link-light text-decoration-none'>
-                                Welcome, <Link className='text-decoration-none'>username</Link>
-                            </h4>
+                        {user ? (
+                            <Stack direction='horizontal' gap={4}>
+                                <Link className='link-light text-decoration-none'>
+                                    Welcome, {user.username}
+                                </Link>
+                                <Link className = "link-light text-decoration-none"  onClick={logoutUser}>Logout</Link>
+                            </Stack>
+
+
                         ) : (
                             <Stack direction='horizontal' gap={4}>
                                 <Link className='link-light text-decoration-none' to='/auth/signin'>

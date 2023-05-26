@@ -5,6 +5,7 @@ const validator = require("validator");
 const auth = require("../routes/AuthRoutes");
 const User = require("../models/User");
 const hash = require("./PasswordHash");
+const { default: mongoose } = require("mongoose");
 
 const newToken = (_id) => {
   const jwtKey = process.env.JWT_SECRET_KEY;
@@ -25,7 +26,10 @@ const signin = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    if (!hash.comparePass(password, user.password)) {
+
+    const isTruePassword  = await hash.comparePass(password, user.password)
+    if (!isTruePassword) {
+
       return res
         .status(400)
         .json({ message: "Check username or password again" });
@@ -71,6 +75,7 @@ const signup = async (req, res) => {
       return res.status(400).json({ message: "password is not strong" });
     }
     let newUser = new User();
+
     newUser.username = username;
     newUser.email = email;
     newUser.name = name;
