@@ -13,7 +13,7 @@ const createConversation = async (req, res) => {
     const newConversation = new Conversation();
     newConversation.name = req.body.name;
     newConversation.participants = [firstId, secondId];
-    newConversation.messages = [{}];
+    
 
     const rs = await newConversation.save();
     res.status(201).json(rs);

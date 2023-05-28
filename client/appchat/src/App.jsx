@@ -11,12 +11,11 @@ import { ChatContextProvider } from './contexts/ChatContext'
 function App() {
   const { user } = useContext(AuthContext)
 
-
   return (
     <>
         <ChatContextProvider user ={user}>
           <Menu />
-          <Container>
+          <Container  className='bg-dark'>
             <Routes>
               <Route path="/" element={user ? <Chat /> : <Navigate to="/auth/signin" />} />
               <Route path="/auth/signin" element={user ? <Navigate to="/" /> : <Login />} />

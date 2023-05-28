@@ -2,8 +2,8 @@ import { Alert, Button, Form, Row, Col, Stack } from "react-bootstrap"
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const Register = () => {
+
     const {user,registerInfo, registerUser, registerError,isRegisterLoading, updateRegisterInfo } = useContext(AuthContext)
-    
     return (
         <>
             <Form onSubmit={registerUser} >
@@ -18,6 +18,7 @@ const Register = () => {
                             <div>
                                 <label htmlFor="email">Email </label>
                                 <Form.Control type = "text" placeholder = "email" id ="email" onChange={(e)=>updateRegisterInfo({...registerInfo,email: e.target.value})}/>
+
                             </div>
                             <div>
                                 <label htmlFor="name">Name </label>
@@ -29,7 +30,7 @@ const Register = () => {
                             </div>
                             <Button type ="submit" variant="success" className="mx-auto" style={{width:"15%"}}>
                                 {isRegisterLoading? "Creating":"Register"}
-                                
+                            
                             </Button>
                             {
                                 

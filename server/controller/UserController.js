@@ -8,7 +8,7 @@ const findUser = async (req,res)=>{
             return res.status(404).json({message: "User not found"})
         }
         return res.status(200).json({
-            id: user._id,
+            _id: user._id,
             name: user.name,
             username: user.username,
             email: user.email
@@ -22,21 +22,14 @@ const findUser = async (req,res)=>{
 }
 
 const findUsers = async (req,res)=>{
-    const ids = req.body.ids
-    if(!ids) {
-        const user = await User.find(new mongoose.Types.ObjectId(req.params.id)) 
-    }
+   
     try{
-        const user = await User.find(new mongoose.Types.ObjectId(req.params.id))
-        if(!user){
+        const users = await User.find()
+        if(!users){
             return res.status(404).json({message: "User not found"})
         }
-       
-        return res.status(200).json({
-            name: user.name,
-            username: user.username,
-            email: user.email
-        })
+        
+        return res.status(200).json(users)
     } catch (err) {
         console.log("Error: " + err)
         return res.status(500).json(err)
