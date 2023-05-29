@@ -15,7 +15,7 @@ function App() {
     <>
         <ChatContextProvider user ={user}>
           <Menu />
-          <Container  className='bg-dark'>
+          <Container className=''>
             <Routes>
               <Route path="/" element={user ? <Chat /> : <Navigate to="/auth/signin" />} />
               <Route path="/auth/signin" element={user ? <Navigate to="/" /> : <Login />} />

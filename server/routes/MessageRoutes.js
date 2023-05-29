@@ -4,6 +4,6 @@ const { createMessage, getMessages } = require('../controller/MessageController'
 const router = express.Router()
 
 router.post('/',createMessage)
-router.get('/',getMessages)
+router.get('/:conversationId',getMessages)
 
 module.exports = router
